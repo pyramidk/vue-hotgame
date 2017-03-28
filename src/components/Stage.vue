@@ -22,7 +22,7 @@
     <div class="game" v-show="gameShow">
       <img :src=imgUrl.gameFont class="font-last"/>
       <ul class="avatar-list">
-        <li @click="compare(item)" v-for="item in listChange"><img :src=item alt=""><div class="wrong" style="display: none"></div></li>
+        <li @click="compare(item)" v-for="item in $store.state.listChange"><img :src=item alt=""><div class="wrong" style="display: none"></div></li>
       </ul>
       <p class="hot">谁是<i></i>红人：{{showGirl.name}}<span></span></p>
       <dl class="time-section">
@@ -99,6 +99,7 @@ export default {
       this.countTen()
     },
     countFive: function () {
+      this.stopTimeout = false
       this.progressTimeOut(this.stageTime, this.totalStage, 'seeProgress', 'seeSecondBox', this.clearStage, this.showGame)
     },
     countTen: function () {
@@ -108,6 +109,23 @@ export default {
         // that.next()
         // that.countFive()
       })
+    },
+    compare (src) {
+      if (src.indexOf(this.$store.state.showGirl.list[0]) > -1) {
+        console.log('you win')
+          // this.gameTime = 10;
+        this.stopTimeout = true
+        this.next()
+        this.countFive()
+          // this.winTimeout = true;
+      } else {
+        console.log('lose')
+        // this.gameTime = 10;
+        this.stopTimeout = true
+        this.fail()
+        // this.fail();
+        // return false;
+      }
     }
   }
 }

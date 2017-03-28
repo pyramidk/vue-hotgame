@@ -108,7 +108,8 @@ const actions = {
   next: ({ commit }) => commit('next'),
   fail: ({ commit }) => commit('fail'),
   replay: ({ commit }) => commit('replay'),
-  showRightResult: ({ commit }) => commit('showRightResult')
+  showRightResult: ({ commit }) => commit('showRightResult'),
+  compare: ({ commit }) => commit('compare')
 }
 
 const getters = {
