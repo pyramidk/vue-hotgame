@@ -109,12 +109,7 @@ export default {
       this.progressTimeOut(this.stageTime, this.totalStage, 'seeProgress', 'seeSecondBox', this.clearStage, this.showGame)
     },
     countTen: function () {
-      var that = this
-      this.progressTimeOut(this.gameTime, this.totalGame, 'timeProgress', 'timeSecondBox', this.clearGame, function () {
-        that.fail()
-        // that.next()
-        // that.countFive()
-      })
+      this.progressTimeOut(this.gameTime, this.totalGame, 'timeProgress', 'timeSecondBox', this.clearGame, this.fail)
     },
     compare (src) {
       if (src.indexOf(this.$store.state.showGirl.list[0]) > -1) {
