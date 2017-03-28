@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="share-bg"></div>
-    <div class="result" v-show="rightResult.show">
-      <!-- <img :src=rightResult.url> -->
+    <div class="result" v-show="rightShow">
+      <img :src=$store.state.rightResult>
     </div>
     <div class="share-box">   
       <div class="share-text">{{ $store.state.font }}</div>
       <ul class="share-list">
         <li @click="replay"><div class="share-btn share-bufu"></div></li>
-        <li>
+        <li @click="showRightResult">
           <div class="share-btn who"></div>
         </li>
       </ul>
@@ -19,23 +19,18 @@
 <script>
   // import GridEvents from '../event.js'
   // import {fontArray} from '../constant.js'
-import { mapActions } from 'Vuex'
+import { mapGetters, mapActions } from 'Vuex'
   export default {
-    data () {
-      return {
-        rightResult: {
-          show: false,
-          url: ''
-        }
-      }
-    },
+    computed: mapGetters([
+      'rightShow'
+    ]),
     methods: mapActions([
-      'replay'
+      'replay',
+      'showRightResult'
     ])
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .share-bg {
     position: absolute;

@@ -21,7 +21,8 @@ const state = {
   fail: false,
   fontArray: fontArray,
   font: '',
-  rightResult: ''
+  rightResult: '',
+  rightShow: false
 }
 
 const mutations = {
@@ -41,6 +42,7 @@ const mutations = {
     state.fail = false
     state.stageShow = true
     state.gameShow = false
+    state.rightShow = false
     mutations.play(state.stageNum)
     GridEvents.$emit('replay')
   },
@@ -93,6 +95,9 @@ const mutations = {
     }
     state.rightResult = state.showGirl.list[0]
     state.listChange = this.randomOrder(state.showGirl.list)
+  },
+  showRightResult () {
+    state.rightShow = true
   }
 }
 
@@ -102,7 +107,8 @@ const actions = {
   start: ({ commit }) => commit('start'),
   next: ({ commit }) => commit('next'),
   fail: ({ commit }) => commit('fail'),
-  replay: ({ commit }) => commit('replay')
+  replay: ({ commit }) => commit('replay'),
+  showRightResult: ({ commit }) => commit('showRightResult')
 }
 
 const getters = {
@@ -113,7 +119,8 @@ const getters = {
   gameShow: state => state.gameShow,
   listChange: state => state.listChange,
   fail: state => state.fail,
-  font: state => state.font
+  font: state => state.font,
+  rightShow: state => state.rightShow
 }
 
 export default new Vuex.Store({
