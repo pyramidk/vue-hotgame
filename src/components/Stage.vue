@@ -49,13 +49,14 @@ export default {
     return {
       imgUrl: img,
       stageArray: stageArray,
-      stopTimeout: false,
+      // stopTimeout: false,
       clearStage: '',
       clearGame: '',
       stageTime: 5,
       totalStage: 5,
       gameTime: 10,
-      totalGame: 10
+      totalGame: 10,
+      winTimeout: false
     }
   },
   mounted () {
@@ -77,11 +78,16 @@ export default {
     progressTimeOut: function (variant, total, progressBoxId, time, type, callback) {
       var that = this
       function progress () {
-        if (variant < 0 || that.stopTimeout) {
+        if (variant < 0 || that.$store.state.stopTimeout) {
           clearTimeout(type)
           variant = total
-
-          if (!that.stopTimeout) {
+          if (that.winTimeout) {
+            that.next()
+            that.countFive()
+            that.winTimeout = false
+            return
+          }
+          if (!that.$store.state.stopTimeout) {
             if (typeof (callback) === 'function') callback()
           }
         } else {
@@ -99,7 +105,7 @@ export default {
       this.countTen()
     },
     countFive: function () {
-      this.stopTimeout = false
+      this.$store.state.stopTimeout = false
       this.progressTimeOut(this.stageTime, this.totalStage, 'seeProgress', 'seeSecondBox', this.clearStage, this.showGame)
     },
     countTen: function () {
@@ -114,17 +120,14 @@ export default {
       if (src.indexOf(this.$store.state.showGirl.list[0]) > -1) {
         console.log('you win')
           // this.gameTime = 10;
-        this.stopTimeout = true
-        this.next()
-        this.countFive()
-          // this.winTimeout = true;
+        this.$store.state.stopTimeout = true
+        this.winTimeout = true
+        // this.next()
+        // this.countFive()
       } else {
         console.log('lose')
-        // this.gameTime = 10;
-        this.stopTimeout = true
+        this.$store.state.stopTimeout = true
         this.fail()
-        // this.fail();
-        // return false;
       }
     }
   }
