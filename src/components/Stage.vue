@@ -49,7 +49,7 @@ export default {
     return {
       imgUrl: img,
       stageArray: stageArray,
-      // stopTimeout: false,
+      stopTimeout: false,
       clearStage: '',
       clearGame: '',
       stageTime: 5,
@@ -78,7 +78,7 @@ export default {
     progressTimeOut: function (variant, total, progressBoxId, time, type, callback) {
       var that = this
       function progress () {
-        if (variant < 0 || that.$store.state.stopTimeout) {
+        if (variant < 0 || that.stopTimeout) {
           clearTimeout(type)
           variant = total
           if (that.winTimeout) {
@@ -87,7 +87,7 @@ export default {
             that.winTimeout = false
             return
           }
-          if (!that.$store.state.stopTimeout) {
+          if (!that.stopTimeout) {
             if (typeof (callback) === 'function') callback()
           }
         } else {
@@ -105,7 +105,7 @@ export default {
       this.countTen()
     },
     countFive: function () {
-      this.$store.state.stopTimeout = false
+      this.stopTimeout = false
       this.progressTimeOut(this.stageTime, this.totalStage, 'seeProgress', 'seeSecondBox', this.clearStage, this.showGame)
     },
     countTen: function () {
@@ -119,14 +119,11 @@ export default {
     compare (src) {
       if (src.indexOf(this.$store.state.showGirl.list[0]) > -1) {
         console.log('you win')
-          // this.gameTime = 10;
-        this.$store.state.stopTimeout = true
+        this.stopTimeout = true
         this.winTimeout = true
-        // this.next()
-        // this.countFive()
       } else {
         console.log('lose')
-        this.$store.state.stopTimeout = true
+        this.stopTimeout = true
         this.fail()
       }
     }

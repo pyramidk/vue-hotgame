@@ -11,7 +11,6 @@ let easy, normal, hard
 // right: showGirl.list[0]
 const state = {
   count: 0,
-  stopTimeout: false,
   stageShow: false,
   stageNum: 1,
   stageArray: stageArray,
