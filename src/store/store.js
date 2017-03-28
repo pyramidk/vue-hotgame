@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import {stageArray, bisai} from '../constant.js'
+import GridEvents from '../event.js'
+
+import {stageArray, bisai, fontArray} from '../constant.js'
 
 Vue.use(Vuex)
 
@@ -13,7 +15,13 @@ const state = {
   stageNum: 1,
   stageArray: stageArray,
   bisai: bisai,
-  showGirl: {}
+  showGirl: {},
+  listChange: [],
+  gameShow: false,
+  fail: false,
+  fontArray: fontArray,
+  font: '',
+  rightResult: ''
 }
 
 const mutations = {
@@ -27,6 +35,31 @@ const mutations = {
     state.stageShow = true
     mutations.play(state.stageNum)
     console.log(state.showGirl)
+    GridEvents.$emit('start')
+  },
+  replay () {
+    state.fail = false
+    state.stageShow = true
+    state.gameShow = false
+    mutations.play(state.stageNum)
+    GridEvents.$emit('replay')
+  },
+  next () {
+    state.stageNum++
+    mutations.play(state.stageNum)
+    state.stageShow = true
+    state.gameShow = false
+    console.log(state.showGirl)
+  },
+  fail () {
+    state.fail = true
+    if (state.stageNum >= 1 && state.stageNum <= 10) {
+      state.font = fontArray.easy[Math.floor(Math.random() * 3)].replace('X', state.stageNum)
+    } else if (state.stageNum >= 11 && state.stageNum < 22) {
+      state.font = fontArray.normal[Math.floor(Math.random() * 3)].replace('X', state.stageNum)
+    } else if (state.stageNum === 22) {
+      state.font = fontArray.hard[0]
+    }
   },
   randomOrder (targetArray) {
     let arrayLength = targetArray.length
@@ -58,20 +91,29 @@ const mutations = {
     } else {
       state.showGirl = hard[guan - 16]
     }
+    state.rightResult = state.showGirl.list[0]
+    state.listChange = this.randomOrder(state.showGirl.list)
   }
 }
 
 const actions = {
   increment: ({ commit }) => commit('increment'),
   decrement: ({ commit }) => commit('decrement'),
-  start: ({ commit }) => commit('start')
+  start: ({ commit }) => commit('start'),
+  next: ({ commit }) => commit('next'),
+  fail: ({ commit }) => commit('fail'),
+  replay: ({ commit }) => commit('replay')
 }
 
 const getters = {
   evenOrOdd: state => state.count % 2 === 0 ? 'even' : 'odd',
   stageShow: state => state.stageShow,
   stageNum: state => state.stageNum,
-  showGirl: state => state.showGirl
+  showGirl: state => state.showGirl,
+  gameShow: state => state.gameShow,
+  listChange: state => state.listChange,
+  fail: state => state.fail,
+  font: state => state.font
 }
 
 export default new Vuex.Store({

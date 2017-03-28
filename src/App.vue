@@ -1,8 +1,8 @@
 <template>
   <div class="facegame">
-    <!-- <hello></hello> -->
     <index></index>
     <stage></stage>
+    <Maskdark v-show="fail"></Maskdark>
   </div>
 </template>
 
@@ -10,14 +10,21 @@
 import Hello from './components/Hello'
 import Index from './components/Index'
 import Stage from './components/Stage'
+import Maskdark from './components/Maskdark'
+
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   components: {
     Hello,
     Index,
-    Stage
-  }
+    Stage,
+    Maskdark
+  },
+  computed: mapGetters([
+    'fail'
+  ])
 }
 </script>
 

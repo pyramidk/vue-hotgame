@@ -5,12 +5,12 @@
       <div class="ji"><img :src=stageArray[stageNum-1] alt=""></div>
       <div class="guan"><img :src=imgUrl.guan alt=""></div>
     </div>
-    <div class="gamestage">
+    <div class="gamestage" v-show="!gameShow">
       <img :src=imgUrl.stage class="stage-font"/>
       <img :src=showGirl.group class="img-show"/>
       <p class="hot"><i></i>红人：{{showGirl.name}}<span id="nameShow"></span></p>
       <dl class="time-section">
-        <dt> <span ref='seeSecondBox'>{{stageNum}}</span>s</dt>
+        <dt> <span ref='seeSecondBox'>{{this.stageTime}}</span>s</dt>
         <dd><div class="jindu1">
           <div class="jindu2"></div>
           <div class="jindu3">
@@ -19,31 +19,61 @@
         </div></dd>
       </dl>
     </div>
+    <div class="game" v-show="gameShow">
+      <img :src=imgUrl.gameFont class="font-last"/>
+      <ul class="avatar-list">
+        <li @click="compare(item)" v-for="item in listChange"><img :src=item alt=""><div class="wrong" style="display: none"></div></li>
+      </ul>
+      <p class="hot">谁是<i></i>红人：{{showGirl.name}}<span></span></p>
+      <dl class="time-section">
+        <dt> <span ref='timeSecondBox'>{{this.gameTime}}</span>s</dt>
+        <dd><div class="jindu1">
+          <div class="jindu2"></div>
+          <div class="jindu3">
+            <img :src=imgUrl.second class="jindu4" ref="timeProgress"/>
+          </div>
+        </div></dd>
+      </dl>
+    </div>
   </div>
 </template>
 
 <script>
+import GridEvents from '../event.js'
 import img from '../img.js'
 import { stageArray } from '../constant.js'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
     return {
       imgUrl: img,
       stageArray: stageArray,
-      stopTimeout: false
+      stopTimeout: false,
+      clearStage: '',
+      clearGame: '',
+      stageTime: 5,
+      totalStage: 5,
+      gameTime: 10,
+      totalGame: 10
     }
   },
   mounted () {
-
+    GridEvents.$on('start', this.countFive)
+    GridEvents.$on('replay', this.countFive)
   },
   computed: mapGetters([
     'stageShow',
     'stageNum',
-    'showGirl'
+    'showGirl',
+    'gameShow',
+    'listChange'
   ]),
   methods: {
+    ...mapActions([
+      'next',
+      'fail'
+    ]),
     progressTimeOut: function (variant, total, progressBoxId, time, type, callback) {
       var that = this
       function progress () {
@@ -62,12 +92,27 @@ export default {
         }
       }
       progress()
+    },
+    showGame: function () {
+      console.log('gameShow')
+      this.$store.state.gameShow = true
+      this.countTen()
+    },
+    countFive: function () {
+      this.progressTimeOut(this.stageTime, this.totalStage, 'seeProgress', 'seeSecondBox', this.clearStage, this.showGame)
+    },
+    countTen: function () {
+      var that = this
+      this.progressTimeOut(this.gameTime, this.totalGame, 'timeProgress', 'timeSecondBox', this.clearGame, function () {
+        that.fail()
+        // that.next()
+        // that.countFive()
+      })
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .gamestage {
     margin-bottom: 70px;
