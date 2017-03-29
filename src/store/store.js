@@ -21,7 +21,8 @@ const state = {
   fontArray: fontArray,
   font: '',
   rightResult: '',
-  rightShow: false
+  rightShow: false,
+  maskNum: 0
 }
 
 const mutations = {
@@ -43,14 +44,14 @@ const mutations = {
     mutations.play(state.stageNum)
     state.stageShow = true
     state.gameShow = false
-    console.log(state.showGirl)
   },
   fail () {
     state.fail = true
+    state.maskNum = state.stageNum - 1
     if (state.stageNum >= 1 && state.stageNum <= 10) {
-      state.font = fontArray.easy[Math.floor(Math.random() * 3)].replace('X', state.stageNum)
+      state.font = fontArray.easy[Math.floor(Math.random() * 3)].replace('X', state.maskNum)
     } else if (state.stageNum >= 11 && state.stageNum < 22) {
-      state.font = fontArray.normal[Math.floor(Math.random() * 3)].replace('X', state.stageNum)
+      state.font = fontArray.normal[Math.floor(Math.random() * 3)].replace('X', state.maskNum)
     } else if (state.stageNum === 22) {
       state.font = fontArray.hard[0]
     }

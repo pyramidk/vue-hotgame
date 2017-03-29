@@ -100,7 +100,6 @@ export default {
       progress()
     },
     showGame: function () {
-      console.log('gameShow')
       this.$store.state.gameShow = true
       this.countTen()
     },
