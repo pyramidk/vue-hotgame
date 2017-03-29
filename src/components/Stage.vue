@@ -117,7 +117,6 @@ export default {
         this.stopTimeout = true
         this.winTimeout = true
       } else {
-        console.log('lose')
         this.stopTimeout = true
         this.fail()
       }

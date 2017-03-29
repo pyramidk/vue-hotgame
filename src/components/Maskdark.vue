@@ -17,18 +17,16 @@
 </template>
 
 <script>
-  // import GridEvents from '../event.js'
-  // import {fontArray} from '../constant.js'
 import { mapGetters, mapActions } from 'Vuex'
-  export default {
-    computed: mapGetters([
-      'rightShow'
-    ]),
-    methods: mapActions([
-      'replay',
-      'showRightResult'
-    ])
-  }
+export default {
+  computed: mapGetters([
+    'rightShow'
+  ]),
+  methods: mapActions([
+    'replay',
+    'showRightResult'
+  ])
+}
 </script>
 
 <style scoped>

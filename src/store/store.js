@@ -10,7 +10,6 @@ Vue.use(Vuex)
 let easy, normal, hard
 // right: showGirl.list[0]
 const state = {
-  count: 0,
   stageShow: false,
   stageNum: 1,
   stageArray: stageArray,
@@ -26,16 +25,9 @@ const state = {
 }
 
 const mutations = {
-  increment (state) {
-    state.count++
-  },
-  decrement (state) {
-    state.count--
-  },
   start () {
     state.stageShow = true
     mutations.play(state.stageNum)
-    console.log(state.showGirl)
     GridEvents.$emit('start')
   },
   replay () {
@@ -102,8 +94,6 @@ const mutations = {
 }
 
 const actions = {
-  increment: ({ commit }) => commit('increment'),
-  decrement: ({ commit }) => commit('decrement'),
   start: ({ commit }) => commit('start'),
   next: ({ commit }) => commit('next'),
   fail: ({ commit }) => commit('fail'),
@@ -113,7 +103,6 @@ const actions = {
 }
 
 const getters = {
-  evenOrOdd: state => state.count % 2 === 0 ? 'even' : 'odd',
   stageShow: state => state.stageShow,
   stageNum: state => state.stageNum,
   showGirl: state => state.showGirl,

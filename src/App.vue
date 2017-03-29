@@ -7,23 +7,23 @@
 </template>
 
 <script>
-import Hello from './components/Hello'
 import Index from './components/Index'
 import Stage from './components/Stage'
 import Maskdark from './components/Maskdark'
 
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   components: {
-    Hello,
     Index,
     Stage,
     Maskdark
   },
   computed: mapGetters([
     'fail'
+  ]),
+  methods: mapActions([
   ])
 }
 </script>
