@@ -76,7 +76,7 @@ export default {
       'fail'
     ]),
     progressTimeOut: function (variant, total, progressBoxId, time, type, callback) {
-      var that = this
+      let that = this
       function progress () {
         if (variant < 0 || that.stopTimeout) {
           clearTimeout(type)

@@ -8,7 +8,7 @@ import {stageArray, bisai, fontArray} from '../constant.js'
 Vue.use(Vuex)
 
 let easy, normal, hard
-// right: showGirl.list[0]
+
 const state = {
   stageShow: false,
   stageNum: 1,
