@@ -1,21 +1,22 @@
-# game-vuex
+# 认网红脸大赛游戏
 
-> A Vue.js project
+> 用Vue开发的一款小游戏
 
-## Build Setup
+## 项目介绍
+
+* 基于Vue-cli构建的开发环境，用Vuex对数据状态进行了管理
+* 这个项目没有用到Vue-router，数据的交互集中在各个组件上，用了Vuex之后对数据的变化的追踪更加容易了一些
+* 这个项目还有一个没有用Vuex的版本，涉及到了父子组件、子组件之间的交互，感兴趣的同学可以去了解一下
+* 求指出代码中问题和建议
+* 本项目所有图片素材均来自于认网红脸大赛游戏
+
+## 运行
 
 ``` bash
-# install dependencies
+
 npm install
 
-# serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
