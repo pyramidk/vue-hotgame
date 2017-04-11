@@ -35,83 +35,83 @@ export default {
 </script>
 
 <style scoped>
-  li {
-    list-style-type: none;
-  }
-  .title {
-    position: absolute;
-    z-index: 10;
-    text-align: center;
-    top: 0;
-    left: 0;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 102px;
-    vertical-align: middle;
-    background-image: url(../../static/img-bg/upload_ie4wmmrymvsdcyrrgyzdambqgqyde_640x189.png);
-    background-position: center center;
-  }
-  .sub-title {
-    margin-top: 8px;
-    width:100%;
-    height: 32px;
-    text-align: center;
-    font-weight: 800;  
-    background-position: center center;
-    background-size: contain;
-    background-repeat: no-repeat;  
-  }
-  .she {
-    margin-top: 100px;
-    background-image: url(../../static/img-bg/upload_ie4wkntggzsdcyrrgyzdambqgqyde_255x51.png);
-  }
-  .she-up {
-    height: 34px;
-    background-image: url(../../static/img-bg/upload_ifqtqojvmnsdcyrrgyzdambqgyyde_255x51.png);
-  }
-  .girls {
-    text-align: center;
-  }
-  .group-girls {
-    width: 357px;
-    height: 136px;
-    border: 2px solid #010;
-  }
-  ul {
-    padding: 0 0;
-    margin: 0 0;
-  }
-  .photo-list {
-    width: 374px;
-    height: 248px;
-    clear: both;
-    margin: 0 auto;
-  }
-  .photo-list li {
-    float: left;
-    padding-top: 10px;
-    margin-left: 10px;
-    width: 109px;
-    height: 112px;
-    opacity: 0;
-  }
-  .photo-list img{
-    width: 109px;
-    height: 112px;
-    border: 2px solid #010;
-  }
-  footer {
-   text-align: center;
- }
- #start {
-  background-image: url(../../static/img-bg/upload_ie4wkytgg43teyrrgyzdamjqgqyde_366x141.png);
-  width: 187px;
-  height: 68px;
+li {
+  list-style-type: none;
+}
+.title {
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  top: 0;
+  left: 0;
   background-size: contain;
   background-repeat: no-repeat;
-  display: inline-block;
-  cursor: pointer;
+  width: 100%;
+  height: 102px;
+  vertical-align: middle;
+  background-image: url(../../static/img-bg/upload_ie4wmmrymvsdcyrrgyzdambqgqyde_640x189.png);
+  background-position: center center;
+}
+.sub-title {
+  margin-top: 8px;
+  width:100%;
+  height: 32px;
+  text-align: center;
+  font-weight: 800;  
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;  
+}
+.she {
+  margin-top: 100px;
+  background-image: url(../../static/img-bg/upload_ie4wkntggzsdcyrrgyzdambqgqyde_255x51.png);
+}
+.she-up {
+  height: 34px;
+  background-image: url(../../static/img-bg/upload_ifqtqojvmnsdcyrrgyzdambqgyyde_255x51.png);
+}
+.girls {
+  text-align: center;
+}
+.group-girls {
+  width: 357px;
+  height: 136px;
+  border: 2px solid #010;
+}
+ul {
+  padding: 0 0;
+  margin: 0 0;
+}
+.photo-list {
+  width: 374px;
+  height: 248px;
+  clear: both;
+  margin: 0 auto;
+}
+.photo-list li {
+  float: left;
+  padding-top: 10px;
+  margin-left: 10px;
+  width: 109px;
+  height: 112px;
+  opacity: 0;
+}
+.photo-list img{
+  width: 109px;
+  height: 112px;
+  border: 2px solid #010;
+}
+footer {
+ text-align: center;
+}
+#start {
+background-image: url(../../static/img-bg/upload_ie4wkytgg43teyrrgyzdamjqgqyde_366x141.png);
+width: 187px;
+height: 68px;
+background-size: contain;
+background-repeat: no-repeat;
+display: inline-block;
+cursor: pointer;
 }
 
 .animated {
