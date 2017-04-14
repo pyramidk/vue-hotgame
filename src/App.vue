@@ -29,7 +29,7 @@ export default {
     'fail'
   ]),
   beforeMount () {
-    setTimeout(() => { this.loading = false }, 1500)
+    setTimeout(() => { this.loading = false }, 1300)
   }
 }
 </script>
