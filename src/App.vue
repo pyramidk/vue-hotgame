@@ -1,6 +1,6 @@
 <template>
-  <div class="facegame">
-    <index></index>
+  <div class="facegame" v-loading.fullscreen.lock="loading">
+    <index v-show="!loading"></index>
     <stage></stage>
     <mask-dark v-show="fail"></mask-dark>
   </div>
@@ -15,6 +15,11 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
+  data () {
+    return {
+      loading: true
+    }
+  },
   components: {
     Index,
     Stage,
@@ -22,7 +27,10 @@ export default {
   },
   computed: mapGetters([
     'fail'
-  ])
+  ]),
+  beforeMount () {
+    setTimeout(() => { this.loading = false }, 1500)
+  }
 }
 </script>
 
